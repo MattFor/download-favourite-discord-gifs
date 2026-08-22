@@ -4,3 +4,6 @@ gifs
 
 # Download from your browser's discord.com
 discord-favorite-gifs.json
+
+__pycache__/
+*.pyc
