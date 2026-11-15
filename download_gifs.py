@@ -16,6 +16,7 @@ from threading import Lock
 from urllib.parse import urlparse
 
 import requests
+import requests.adapters
 
 MEDIA_EXTS = (
 	".jpeg",
@@ -115,6 +116,7 @@ def run_ffmpeg(args: list[str]) -> None:
 		stdout=subprocess.DEVNULL,
 		stderr=subprocess.PIPE,
 		text=True,
+		check=False,
 	)
 
 	if result.returncode != 0:
@@ -343,14 +345,14 @@ def normalize_dir(out_dir: Path, stats: Stats, args: argparse.Namespace, ffmpeg_
 		log(f"Renamed: {path.name} -> {target.name}")
 
 
-def load_entries(json_path: Path) -> list[tuple[str, str, int]]:
-	with open(json_path, "r", encoding="utf-8") as f:
+def load_entries(json_path: Path) -> list[tuple[str, str, str]]:
+	with open(json_path, encoding="utf-8") as f:
 		data = json.load(f)
 
 	if not isinstance(data, dict):
 		raise ValueError("expected the JSON root to be an object")
 
-	entries: list[tuple[str, str, int]] = []
+	entries: list[tuple[str, str, str]] = []
 	used: dict[str, int] = {}
 
 	for i, (page_url, meta) in enumerate(data.items(), start=1):
@@ -512,7 +514,6 @@ def main(argv: list[str] | None = None) -> int:
 
 	if pending:
 		session = requests.Session()
-		# noinspection unresolved-references
 		adapter = requests.adapters.HTTPAdapter(pool_connections=args.workers, pool_maxsize=args.workers)
 		session.mount("https://", adapter)
 		# noinspection HttpUrlsUsage

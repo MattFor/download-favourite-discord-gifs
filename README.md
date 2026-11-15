@@ -1,10 +1,14 @@
-# Discord Favorite GIF Downloader
+# download-favourite-discord-gifs
 
-A single Python script that downloads your exported Discord favorite GIFs.
+[![CI](https://github.com/MattFor/download-favourite-discord-gifs/actions/workflows/ci.yml/badge.svg)](https://github.com/MattFor/download-favourite-discord-gifs/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/MattFor/download-favourite-discord-gifs)](https://github.com/MattFor/download-favourite-discord-gifs/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## What does it do?
+A single Python script that downloads your exported Discord favourite GIFs.
 
-- Reads the Discord favorites export JSON.
+## Features
+
+- Reads the Discord favourites export JSON.
 - Downloads every GIF or video source, several at a time.
 - Converts video sources (MP4, WebM) to `.gif` with a two-pass palette for good colour.
 - Names each file after the content it actually contains, not after the URL.
@@ -24,7 +28,15 @@ pip install -r requirements.txt
 
 Without `ffmpeg` the script still runs, it just keeps video sources in their original format instead of converting them.
 
-## Getting the JSON export from Discord
+## Usage
+
+```bash
+python download_gifs.py discord-favorite-gifs.json
+```
+
+The GIFs land in `gifs/`.
+
+### Getting the JSON export from Discord
 
 Use the snippet from this gist:
 
@@ -36,14 +48,6 @@ https://gist.github.com/Davr1/af6a5806a3bf4b5b7dc18829029b42c2
 4. Paste the export snippet.
 5. If Discord blocks pasting, type `allow pasting` first, then paste again.
 6. Run the snippet.
-
-## Usage
-
-```bash
-python download_gifs.py discord-favorite-gifs.json
-```
-
-The GIFs land in `gifs/`.
 
 ### Options
 
@@ -64,7 +68,7 @@ The GIFs land in `gifs/`.
 Full-size GIFs converted from video get large. If you care about disk space, `--width 480` cuts the size dramatically
 for very little visible loss.
 
-## Tidying up an existing folder
+### Tidying up an existing folder
 
 ```bash
 python download_gifs.py --normalize-only
@@ -73,7 +77,7 @@ python download_gifs.py --normalize-only
 This renames files that carry the wrong extension, converts leftover videos to GIF, and clears out interrupted
 downloads. It runs automatically after every download unless `--no-normalize` is passed.
 
-## Example output
+### Example output
 
 ```text
 1948 entries, 311 already downloaded, 1637 to fetch.
@@ -89,9 +93,11 @@ Dead links:        52 (3.18% of attempted)
 Other failures:    5
 ```
 
-## Notes
+### Notes
 
-- File names keep the original favorites order through the `order` field.
+- File names keep the original favourites order through the `order` field.
 - Expired Discord CDN links return HTTP 404 and are counted as dead links.
 
-By MattFor
+## License
+
+MIT, see [LICENSE](LICENSE). By [MattFor](https://github.com/MattFor).
