@@ -1,4 +1,4 @@
-# download-favourite-discord-gifs
+# Download Favourite Discord GIFs
 
 [![CI](https://github.com/MattFor/download-favourite-discord-gifs/actions/workflows/ci.yml/badge.svg)](https://github.com/MattFor/download-favourite-discord-gifs/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/MattFor/download-favourite-discord-gifs)](https://github.com/MattFor/download-favourite-discord-gifs/releases)
