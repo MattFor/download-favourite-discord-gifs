@@ -4,19 +4,19 @@ A single Python script that downloads your exported Discord favorite GIFs.
 
 ## What does it do?
 
-* Reads the Discord favorites export JSON.
-* Downloads every GIF or video source, several at a time.
-* Converts video sources (MP4, WebM) to `.gif` with a two-pass palette for good colour.
-* Names each file after the content it actually contains, not after the URL.
-* Skips files that were already downloaded, so re-running is cheap.
-* Retries temporary network errors and reports genuinely dead links separately.
-* Saves everything into a `gifs/` folder.
+- Reads the Discord favorites export JSON.
+- Downloads every GIF or video source, several at a time.
+- Converts video sources (MP4, WebM) to `.gif` with a two-pass palette for good colour.
+- Names each file after the content it actually contains, not after the URL.
+- Skips files that were already downloaded, so re-running is cheap.
+- Retries temporary network errors and reports genuinely dead links separately.
+- Saves everything into a `gifs/` folder.
 
 ## Requirements
 
-* Python 3.10+
-* `requests`
-* `ffmpeg`, for video-to-GIF conversion
+- Python 3.10+
+- `requests`
+- `ffmpeg`, for video-to-GIF conversion
 
 ```bash
 pip install -r requirements.txt
@@ -48,7 +48,7 @@ The GIFs land in `gifs/`.
 ### Options
 
 | Option              | Default | What it does                                                    |
-|---------------------|---------|-----------------------------------------------------------------|
+| ------------------- | ------- | --------------------------------------------------------------- |
 | `-o`, `--out DIR`   | `gifs`  | Where to save the files                                         |
 | `-j`, `--workers N` | `8`     | How many downloads to run in parallel                           |
 | `--timeout SECONDS` | `60`    | Per-request timeout                                             |
@@ -91,7 +91,7 @@ Other failures:    5
 
 ## Notes
 
-* File names keep the original favorites order through the `order` field.
-* Expired Discord CDN links return HTTP 404 and are counted as dead links.
+- File names keep the original favorites order through the `order` field.
+- Expired Discord CDN links return HTTP 404 and are counted as dead links.
 
 By MattFor
